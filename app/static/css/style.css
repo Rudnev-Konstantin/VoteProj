@@ -1,0 +1,66 @@
+body {
+    display: grid;
+    grid-template-areas: "navbar" "main";
+    grid-template-rows: minmax(50px, 100px) 1fr;
+    height: 100vh;
+}
+
+nav {
+    grid-area: navbar;
+}
+
+main {
+    grid-area: main;
+}
+
+.form-centered {
+    width: 400px;
+}
+
+.desktop-navbar > .col:has(.user-nav) {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    column-gap: 86px;
+}
+
+.user-nav {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 24px;
+}
+
+.user-name {
+    width: max-content;
+}
+
+.user-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.user-icon:has(>.fa-user) {
+    background-color: gray;
+    color: white;
+    font-size: 48px;
+    padding-top: 16px;
+}
+
+.user-icon:has(>img) {
+    align-items: center;
+}
+
+.user-icon > img {
+    width: 64px;
+    height: 64px;
+}
+
+button:has(>.user-icon) {
+    background: none;
+    border: none;
+}

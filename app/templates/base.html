@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/frameworks/bootstrap-5.3.5-dist/css/bootstrap.min.css" />
+    <link href="/static/frameworks/fontawesome-free-6.7.2-web/css/fontawesome.css" rel="stylesheet" />
+    <link href="/static/frameworks/fontawesome-free-6.7.2-web/css/solid.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="row w-100 desktop-navbar">
+                <div class="col d-flex align-items-center">
+                    <span class="navbar-brand h1">Vote Proj</span>
+                </div>
+                <div class="col">
+                    <div>
+                        <a class="nav-link" href="#">Отслеживаемое</a>
+                    </div>
+                    <div>
+                        <a class="nav-link" href="#">Каталог</a>
+                    </div>
+                    {% if nav['authorized'] %}  
+                        <div class="dropdown">
+                            <button class="user-nav" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="user-icon">
+                                    {% if nav['avatar'] is none %}
+                                        <i class="fa-solid fa-user"></i>
+                                    {% else %}
+                                        <img src="{{nav['avatar']}}" />
+                                    {%endif%}
+                                </div>
+                                <div class="user-name">
+                                    {{ ' '.join((nav['name'][0], nav['name'][1][0] + '.', nav['name'][2][0] + '.')) }}
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Мои конкурсы</a></li>
+                                <li><a class="dropdown-item" href="#">Мои проекты</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Настройки</a></li>
+                                <li><a class="dropdown-item" href="#">Выход <i class="ms-2 fa-solid fa-arrow-right-from-bracket"></i></a></li>
+                            </ul>                            
+                        </div>
+                    {% else %}
+                        <div class="user-nav">
+                            <div class="user-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="user-name">
+                                <a href="/login">
+                                    <button class="btn btn-outline-dark">
+                                        <i class="me-2 fa-solid fa-arrow-right-to-bracket"></i> Войти
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="container-fluid">
+        {% block content %}{% endblock %}
+    </main>
+    <script src="/static/frameworks/bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
