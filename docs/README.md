@@ -1,4 +1,4 @@
 # Небольшой путеводитель по общей документацией проекта
 
-[Техническое Задание](/docs/technical_specification.md)
+[Техническое Задание](/docs/technical_specification.md) \
 [Параметры](/docs/Параметры.md)
