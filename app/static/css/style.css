@@ -17,10 +17,7 @@ main {
     width: 400px;
 }
 
-.desktop-navbar > .col:has(.user-nav) {
-    display: flex;
-    justify-content: end;
-    align-items: center;
+.desktop-navbar > div:has(>.user-nav) {
     column-gap: 86px;
 }
 
@@ -36,18 +33,35 @@ main {
 }
 
 .user-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 32px;
     overflow: hidden;
     display: flex;
     justify-content: center;
 }
 
+.desktop-navbar .user-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+}
+
+.mobile-navbar .user-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+}
+
 .user-icon:has(>.fa-user) {
     background-color: gray;
     color: white;
+}
+
+.desktop-navbar .user-icon:has(>.fa-user) {
     font-size: 48px;
+    padding-top: 16px;
+}
+
+.mobile-navbar .user-icon:has(>.fa-user) {
+    font-size: 32px;
     padding-top: 16px;
 }
 
@@ -55,12 +69,12 @@ main {
     align-items: center;
 }
 
-.user-icon > img {
+.desktop-navbar .user-icon > img {
     width: 64px;
     height: 64px;
 }
 
-button:has(>.user-icon) {
+button.user-nav {
     background: none;
     border: none;
 }

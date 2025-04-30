@@ -11,18 +11,21 @@
 </head>
 <body>
     <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <div class="row w-100 desktop-navbar">
-                <div class="col d-flex align-items-center">
+        <div class="container">
+            <div class="row g-0 w-100 mobile-navbar">
+                <div class="col-3 col-sm-6 d-flex align-items-center">
                     <span class="navbar-brand h1">Vote Proj</span>
                 </div>
-                <div class="col">
+                <div class="col-8 col-sm-6 d-flex justify-content-end align-items-center pe-4 pe-sm-0">
+                    <!-- Desktop
+                    .desktop-navbar
                     <div>
                         <a class="nav-link" href="#">Отслеживаемое</a>
                     </div>
                     <div>
                         <a class="nav-link" href="#">Каталог</a>
                     </div>
+                    
                     {% if nav['authorized'] %}  
                         <div class="dropdown">
                             <button class="user-nav" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,7 +37,7 @@
                                     {%endif%}
                                 </div>
                                 <div class="user-name">
-                                    {{ ' '.join((nav['name'][0], nav['name'][1][0] + '.', nav['name'][2][0] + '.')) }}
+                                    {{ nav['name'][0]}} {{nav['name'][1][0]}}. {{nav['name'][2][0]}}.
                                 </div>
                             </button>
                             <ul class="dropdown-menu">
@@ -59,6 +62,21 @@
                             </div>
                         </div>
                     {% endif %}
+                    -->
+                    <div class="user-nav">
+                        {% if not nav['authorized'] %}
+                            <div class="user-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="user-name">
+                                <a href="/login">
+                                    <button class="btn btn-outline-dark btn-sm">
+                                        <i class="me-2 fa-solid fa-arrow-right-to-bracket"></i> Войти
+                                    </button>
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
