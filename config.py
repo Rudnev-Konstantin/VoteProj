@@ -2,7 +2,7 @@ import os
 
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'your_secret_key'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'my_super_secret_key'
     DEBUG = False
     TESTING = False
 
@@ -15,15 +15,15 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     TESTING = True
     WTF_CSRF_ENABLED = False
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
 
 
 class ProductionConfig(Config):
-    DEBUG = False
     PREFERRED_URL_SCHEME = 'https'
 
 
 config = {
-    'default': DevelopmentConfig,
+    'default': Config,
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': ProductionConfig
