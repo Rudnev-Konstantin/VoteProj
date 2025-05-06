@@ -14,8 +14,8 @@ class User(Declarative_Base, UserMixin):
     id = Column(Integer, primary_key=True, autoincrement=True)
     
     # Основные данные
-    name = Column(String, nullable=True)
-    surname = Column(String, nullable=True)
+    name = Column(String)
+    surname = Column(String)
     patronymic = Column(String, nullable=True)
     avatar_path = Column(
         String, nullable=True,
@@ -23,7 +23,28 @@ class User(Declarative_Base, UserMixin):
     )
     description = Column(
         Text, nullable=True, 
-        comment='Описание/биография пользователя'
+        comment='Описание пользователя'
+    )
+    
+    # Служебные данные
+    created_date = Column(DateTime, default=datetime.datetime.now)
+
+
+class Organization(Declarative_Base, UserMixin):
+    __tablename__ = "projects"
+    
+    # Связи и идентификаторы
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    
+    # Основные данные
+    title = Column(String)
+    illustration_path = Column(
+        String, nullable=True,
+        comment='Путь к файлу иллюстрации'
+    )
+    description = Column(
+        Text, nullable=True, 
+        comment='Описание организации'
     )
     
     # Служебные данные
