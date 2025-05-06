@@ -11,8 +11,11 @@ class Contest(Declarative_Base):
     
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    user = orm.relationship("User", lazy="joined")
     status_id = Column(Integer, ForeignKey('statuses.id'))
     status = orm.relationship("Status", lazy="joined")
+    projects = orm.relationship("Project", secondary="users_to_contests", back_populates="contests")
     
     # Основные данные
     title = Column(String)
@@ -37,6 +40,9 @@ class Nomination(Declarative_Base):
     
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
+    contest_id = Column(Integer, ForeignKey('contests.id'))
+    contest = orm.relationship("Contest", lazy="joined")
+    project_associations = orm.relationship("Project_to_Nomination", back_populates="nomination")
     
     # Основные данные
     title = Column(String)

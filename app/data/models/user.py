@@ -16,6 +16,12 @@ class User(Declarative_Base, UserMixin):
     category = orm.relationship("Category", lazy="joined")
     education_id = Column(Integer, ForeignKey('educations.id'))
     education = orm.relationship("Education", lazy="joined")
+    projects = orm.relationship("Project", secondary="users_to_projects", back_populates="users")
+    organizations = orm.relationship(
+        "Organization", secondary="users_to_organizations",
+        back_populates="users"
+    )
+    votes = orm.relationship("Project_to_Nomination", back_populates="voted_user")
     
     # Основные данные
     name = Column(String)
@@ -35,10 +41,11 @@ class User(Declarative_Base, UserMixin):
 
 
 class Organization(Declarative_Base, UserMixin):
-    __tablename__ = "projects"
+    __tablename__ = "organizations"
     
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
+    users = orm.relationship("User", secondary="users_to_organizations", back_populates="organizations")
     
     # Основные данные
     title = Column(String)
