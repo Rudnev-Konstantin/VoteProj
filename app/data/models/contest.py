@@ -1,6 +1,6 @@
 from ..db_connect import Declarative_Base
 
-from sqlalchemy import Column, orm
+from sqlalchemy import Column, ForeignKey, orm
 from sqlalchemy import Integer, String, Text, DateTime
 
 import datetime
@@ -11,6 +11,8 @@ class Contest(Declarative_Base):
     
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
+    status_id = Column(Integer, ForeignKey('statuses.id'))
+    status = orm.relationship("Status", lazy="joined")
     
     # Основные данные
     title = Column(String)
@@ -38,3 +40,11 @@ class Nomination(Declarative_Base):
     
     # Основные данные
     title = Column(String)
+
+
+# Статические таблицы
+class Status(Declarative_Base):
+    __tablename__ = "statuses"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    status = Column(String)

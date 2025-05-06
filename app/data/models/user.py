@@ -1,7 +1,7 @@
 from ..db_connect import Declarative_Base
 from flask_login import UserMixin
 
-from sqlalchemy import Column, orm
+from sqlalchemy import Column, ForeignKey, orm
 from sqlalchemy import Integer, String, Text, DateTime
 
 import datetime
@@ -12,6 +12,10 @@ class User(Declarative_Base, UserMixin):
     
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
+    category_id = Column(Integer, ForeignKey('categories.id'))
+    category = orm.relationship("Category", lazy="joined")
+    education_id = Column(Integer, ForeignKey('educations.id'))
+    education = orm.relationship("Education", lazy="joined")
     
     # Основные данные
     name = Column(String)
@@ -49,3 +53,18 @@ class Organization(Declarative_Base, UserMixin):
     
     # Служебные данные
     created_date = Column(DateTime, default=datetime.datetime.now)
+
+
+# Статические таблицы
+class Education(Declarative_Base):
+    __tablename__ = "educations"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    education = Column(String)
+
+
+class Category(Declarative_Base):
+    __tablename__ = "categories"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    category = Column(String)
