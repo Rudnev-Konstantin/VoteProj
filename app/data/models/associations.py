@@ -11,10 +11,10 @@ class User_to_Project(Declarative_Base):
     project_id = Column(Integer, ForeignKey('projects.id'))
 
 
-class User_to_Organization(Declarative_Base):
-    __tablename__ = "users_to_organizations"
+class NormalUsers_to_Organization(Declarative_Base):
+    __tablename__ = "normal_users_to_organizations"
     
-    user_id = Column(Integer, ForeignKey('users.id'))
+    normal_user_id = Column(Integer, ForeignKey('normal_users.id'))
     organization_id = Column(Integer, ForeignKey('organizations.id'))
 
 
@@ -25,12 +25,12 @@ class Project_to_Contest(Declarative_Base):
     contest_id = Column(Integer, ForeignKey('contests.id'))
 
 
-class Project_to_Nomination(Declarative_Base):
-    __tablename__ = "users_to_nominations"
+class Vote(Declarative_Base):
+    __tablename__ = "votes"
     
     project_id = Column(Integer, ForeignKey('projects.id'))
-    project = orm.relationship("Project", back_populates="nomination_associations")
+    project = orm.relationship("Project", back_populates="votes")
     nomination_id = Column(Integer, ForeignKey('nominations.id'))
-    nomination = orm.relationship("Nomination", back_populates="project_associations")
+    nomination = orm.relationship("Nomination", back_populates="votes")
     voted_user_id = Column(Integer, ForeignKey('users.id'))
     voted_user = orm.relationship("User", back_populates="votes")

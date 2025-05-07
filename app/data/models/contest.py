@@ -12,10 +12,9 @@ class Contest(Declarative_Base):
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('users.id'))
-    user = orm.relationship("User", lazy="joined")
-    status_id = Column(Integer, ForeignKey('statuses.id'))
-    status = orm.relationship("Status", lazy="joined")
+    user = orm.relationship("User", back_populates="contests")
     projects = orm.relationship("Project", secondary="users_to_contests", back_populates="contests")
+    nominations = orm.relationship("Nomination", back_populates="contest")
     
     # Основные данные
     title = Column(String)
@@ -30,6 +29,8 @@ class Contest(Declarative_Base):
     start_date = Column(DateTime)
     end_date = Column(DateTime)
     location = Column(String, nullable=True)
+    status_id = Column(Integer, ForeignKey('statuses.id'))
+    status = orm.relationship("Status", lazy="joined")
     
     # Служебные данные
     created_date = Column(DateTime, default=datetime.datetime.now)
@@ -41,8 +42,8 @@ class Nomination(Declarative_Base):
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
     contest_id = Column(Integer, ForeignKey('contests.id'))
-    contest = orm.relationship("Contest", lazy="joined")
-    project_associations = orm.relationship("Project_to_Nomination", back_populates="nomination")
+    contest = orm.relationship("Contest", back_populates="nominations")
+    votes = orm.relationship("Vote", back_populates="nomination")
     
     # Основные данные
     title = Column(String)

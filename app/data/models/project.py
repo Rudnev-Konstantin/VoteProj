@@ -13,7 +13,7 @@ class Project(Declarative_Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     users = orm.relationship("User", secondary="users_to_projects", back_populates="projects")
     contests = orm.relationship("Contest", secondary="users_to_contests", back_populates="projects")
-    nomination_associations = orm.relationship("Project_to_Nomination", back_populates="project")
+    votes = orm.relationship("Vote", back_populates="project")
     
     # Основные данные
     title = Column(String)
