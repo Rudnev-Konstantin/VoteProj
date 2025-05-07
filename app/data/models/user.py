@@ -17,8 +17,8 @@ class User(Declarative_Base, UserMixin):
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
     type = Column(String)
-    contests = orm.relationship("Contest", back_populates="user")
-    projects = orm.relationship("Project", secondary="users_to_projects", back_populates="users")
+    contests = orm.relationship("Contest", back_populates="author")
+    projects = orm.relationship("Project", secondary="users_to_projects", back_populates="authors")
     votes = orm.relationship("Vote", back_populates="voted_user")
     
     # Основные данные

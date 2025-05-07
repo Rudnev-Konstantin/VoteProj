@@ -11,8 +11,8 @@ class Contest(Declarative_Base):
     
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    user = orm.relationship("User", back_populates="contests")
+    author_id = Column(Integer, ForeignKey('users.id'))
+    author = orm.relationship("User", back_populates="contests")
     projects = orm.relationship("Project", secondary="users_to_contests", back_populates="contests")
     nominations = orm.relationship("Nomination", back_populates="contest")
     

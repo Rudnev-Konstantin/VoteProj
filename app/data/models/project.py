@@ -11,7 +11,7 @@ class Project(Declarative_Base):
     
     # Связи и идентификаторы
     id = Column(Integer, primary_key=True, autoincrement=True)
-    users = orm.relationship("User", secondary="users_to_projects", back_populates="projects")
+    authors = orm.relationship("User", secondary="users_to_projects", back_populates="projects")
     contests = orm.relationship("Contest", secondary="users_to_contests", back_populates="projects")
     votes = orm.relationship("Vote", back_populates="project")
     
