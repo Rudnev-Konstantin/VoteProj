@@ -19,6 +19,7 @@ class Project(Declarative_Base):
     title = Column(String)
     illustration_path = Column(
         String, nullable=True,
+        default="app/static/images/projects/default.jpg",
         comment='Путь к файлу иллюстрации'
     )
     description = Column(

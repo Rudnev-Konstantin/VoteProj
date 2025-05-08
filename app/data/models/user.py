@@ -48,6 +48,7 @@ class NormalUser(User):
     patronymic = Column(String, nullable=True)
     avatar_path = Column(
         String, nullable=True,
+        default="app/static/images/users/normal/default.jpg",
         comment='Путь к файлу аватарки'
     )
     category_id = Column(Integer, ForeignKey('categories.id'))
@@ -71,6 +72,7 @@ class Organization(User):
     title = Column(String)
     illustration_path = Column(
         String, nullable=True,
+        default="app/static/images/users/organizations/default.jpg",
         comment='Путь к файлу иллюстрации'
     )
 
