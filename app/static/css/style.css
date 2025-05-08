@@ -1,80 +1,84 @@
-body {
-    display: grid;
-    grid-template-areas: "navbar" "main";
-    grid-template-rows: minmax(50px, 100px) 1fr;
-    height: 100vh;
-}
-
-nav {
-    grid-area: navbar;
-}
-
-main {
-    grid-area: main;
-}
-
-.form-centered {
-    width: 400px;
-}
-
-.desktop-navbar > div:has(>.user-nav) {
-    column-gap: 86px;
-}
-
-.user-nav {
+/* Avatar styles */
+.avatar-placeholder {
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    column-gap: 24px;
-}
-
-.user-name {
-    width: max-content;
-}
-
-.user-icon {
-    overflow: hidden;
-    display: flex;
     justify-content: center;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
-.desktop-navbar .user-icon {
+/* Dropdown animations */
+.dropdown-menu {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px);
+}
+
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile dropdown styles */
+#mobileUserDropdown {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, height 0.3s ease;
+    overflow: hidden;
+}
+
+#mobileUserDropdown.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Mobile menu item styles */
+#mobileUserDropdown .nav-link,
+#mobileUserDropdown a {
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+#mobileUserDropdown a:hover {
+    background-color: #f8f9fa;
+}
+
+/* Footer adjustments */
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.desktop-avatar {
     width: 64px;
     height: 64px;
-    border-radius: 32px;
 }
 
-.mobile-navbar .user-icon {
+.mobile-avatar {
     width: 48px;
     height: 48px;
-    border-radius: 24px;
 }
 
-.user-icon:has(>.fa-user) {
-    background-color: gray;
-    color: white;
+.avatar-placeholder.desktop-avatar i {
+    font-size: 24px;
 }
 
-.desktop-navbar .user-icon:has(>.fa-user) {
-    font-size: 48px;
-    padding-top: 16px;
+.avatar-placeholder.mobile-avatar i {
+    font-size: 20px;
 }
 
-.mobile-navbar .user-icon:has(>.fa-user) {
-    font-size: 32px;
-    padding-top: 16px;
-}
-
-.user-icon:has(>img) {
-    align-items: center;
-}
-
-.desktop-navbar .user-icon > img {
-    width: 64px;
-    height: 64px;
-}
-
-button.user-nav {
-    background: none;
-    border: none;
+.navbar{
+    min-height: 100px;
 }

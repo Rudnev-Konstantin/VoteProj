@@ -10,7 +10,7 @@ def home():
 
 @app.route("/login")
 def login():
-    return render_template("login.html", title="Вход", nav={'authorized': False})
+    return render_template("login.html", title="Вход", nav={'authorized': True, 'name': "Суанов Давид Мушехович", 'avatar': None, 'is_user': True})
 
 
 @app.route("/registration")
