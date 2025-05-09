@@ -5,10 +5,14 @@ from app import create_app
 # ...
 
 
-@pytest.fixture
-def client():
-    # Создаём временную БД в памяти
-    app = create_app("testing", db_cone_url="sqlite:///:memory:")
+@pytest.fixture(scope="session")
+def test_db_url():
+    return "sqlite:///:memory:"
+
+
+@pytest.fixture(scope="function")
+def client(test_db_url):
+    app = create_app("testing", db_cone_url=test_db_url)
     
     with app.app_context():
         with app.db_connect.get_session() as session:
