@@ -1,4 +1,6 @@
-{% set name = nav.name.split() %}
+{% if nav.authorized %}
+{%set name = nav.name.split() %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -51,12 +53,17 @@
                                 <a class="dropdown-item" href="#">Мои конкурсы</a>
                                 <a class="dropdown-item" href="#">Мои проекты</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Выход</a>
+                                <a class="dropdown-item" href="#">Выход<i class="fa-solid fa-arrow-right-from-bracket ms-2"></i></a>
                             </div>
                         {% else %}
-                            <a href="#" class="btn btn-outline-primary">
-                                <i class="fas fa-sign-in-alt me-2"></i>Войти
-                            </a>
+                            <div class="d-flex gap-2 align-items-center">
+                                <div class="avatar-placeholder desktop-avatar me-2" id="desktopAvatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <a href="#" class="d-block btn btn-outline-dark">
+                                    <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Войти
+                                </a>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
@@ -72,28 +79,30 @@
                             </div>
                         {% endif %}
                     {% else %}
-                        <div class="avatar-placeholder mobile-avatar" id="mobileAvatar">
-                            <i class="fas fa-user"></i>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="avatar-placeholder mobile-avatar" id="mobileAvatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <a href="#" class="d-block btn btn-outline-dark btn-sm">
+                                <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Войти
+                            </a>
                         </div>
                     {% endif %}
                 </div>
             </div>
-            
+
+            {% if nav.authorized %}
             <!-- Mobile Dropdown Menu -->
             <div class="container-fluid d-lg-none" id="mobileUserDropdown">
                 <div class="row">
                     <div class="col-12 py-2">
-                        {% if nav.authorized %}
                             <h4 class="text-end fw-normal pe-2">{{ nav.name }}</h4>
                             <a class="d-block text-end pe-2" href="#">Моя страница</a>
                             <hr>
                             <a class="d-block ps-2" href="#">Мои конкурсы</a>
                             <a class="d-block ps-2" href="#">Мои проекты</a>
                             <hr>
-                            <a class="d-block ps-2" href="#"><i class="fas fa-sign-out-alt me-2"></i>Выход</a>
-                        {% else %}
-                            <a class="d-block ps-2" href="#"><i class="fas fa-sign-in-alt me-2"></i>Войти</a>
-                        {% endif %}
+                            <a class="d-block ps-2" href="#">Выход<i class="fa-solid fa-arrow-right-from-bracket ms-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -101,14 +110,14 @@
             <!-- Mobile Bottom Menu -->
             <div class="container-fluid d-lg-none" id="header_bottom">
                 <ul class="navbar-nav w-100">
-                    <div class="row">
-                        <div class="col text-center">
+                    <div class="row justify-content-center">
+                        <div class="col col-sm-3 text-center">
                             <a class="nav-link" href="#">Отслеживаемое</a>
                         </div>
-                        <div class="col text-center">
+                        <div class="col col-sm-3 text-center">
                             <a class="nav-link" href="#">Каталог</a>
                         </div>
-                        <div class="col text-center">
+                        <div class="col col-sm-3 text-center">
                             <a class="nav-link" href="#">
                                 {% if nav.is_user %}Организации{% else %}Вернуться к...{% endif %}
                             </a>
@@ -116,6 +125,7 @@
                     </div>
                 </ul>
             </div>
+            {% endif %}
         </nav>
     </header>
 

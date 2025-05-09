@@ -39,16 +39,10 @@
 }
 
 /* Mobile menu item styles */
-#mobileUserDropdown .nav-link,
 #mobileUserDropdown a {
     padding: 0.5rem 1rem;
     color: #212529;
     text-decoration: none;
-    transition: background-color 0.2s;
-}
-
-#mobileUserDropdown a:hover {
-    background-color: #f8f9fa;
 }
 
 /* Footer adjustments */
