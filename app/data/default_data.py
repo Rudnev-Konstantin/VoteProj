@@ -1,5 +1,5 @@
-from models.user import Education, Category
-from models.contest import Status
+from .models.user import Education, Category
+from .models.contest import Status
 
 
 def fill_educations(session):

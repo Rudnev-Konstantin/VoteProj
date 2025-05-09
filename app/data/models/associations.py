@@ -1,33 +1,37 @@
 from ..db_connect import Declarative_Base
 
-from sqlalchemy import Column, ForeignKey, orm
+from sqlalchemy import Table, Column, ForeignKey, orm
 from sqlalchemy import Integer
 
 
-class User_to_Project(Declarative_Base):
-    __tablename__ = "users_to_projects"
-    
-    user_id = Column(Integer, ForeignKey('users.id'))
-    project_id = Column(Integer, ForeignKey('projects.id'))
+User_to_Project = Table(
+    "users_to_projects",
+    Declarative_Base.metadata,
+    Column("user_id", Integer, ForeignKey('users.id')),
+    Column("project_id", Integer, ForeignKey('projects.id'))
+)
 
 
-class NormalUsers_to_Organization(Declarative_Base):
-    __tablename__ = "normal_users_to_organizations"
-    
-    normal_user_id = Column(Integer, ForeignKey('normal_users.id'))
-    organization_id = Column(Integer, ForeignKey('organizations.id'))
+NormalUsers_to_Organization = Table(
+    "normal_users_to_organizations",
+    Declarative_Base.metadata,
+    Column("normal_user_id", Integer, ForeignKey('normal_users.id')),
+    Column("organization_id", Integer, ForeignKey('organizations.id'))
+)
 
 
-class Project_to_Contest(Declarative_Base):
-    __tablename__ = "users_to_contests"
-    
-    project_id = Column(Integer, ForeignKey('projects.id'))
-    contest_id = Column(Integer, ForeignKey('contests.id'))
+Project_to_Contest = Table(
+    "users_to_contests",
+    Declarative_Base.metadata,
+    Column("project_id", Integer, ForeignKey('projects.id')),
+    Column("contest_id", Integer, ForeignKey('contests.id'))
+)
 
 
 class Vote(Declarative_Base):
     __tablename__ = "votes"
     
+    id = Column(Integer, primary_key=True)
     project_id = Column(Integer, ForeignKey('projects.id'))
     project = orm.relationship("Project", back_populates="votes")
     nomination_id = Column(Integer, ForeignKey('nominations.id'))

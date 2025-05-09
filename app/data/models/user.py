@@ -10,7 +10,7 @@ import datetime
 class User(Declarative_Base, UserMixin):
     __tablename__ = 'users'
     __mapper_args__ = {
-        'polymorphic_on': type,
+        'polymorphic_on': 'type',
         'polymorphic_identity': 'user'
     }
     
