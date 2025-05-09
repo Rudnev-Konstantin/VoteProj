@@ -76,3 +76,11 @@ footer a:hover {
 .navbar{
     min-height: 100px;
 }
+
+footer i {
+    font-size: 64px;
+}
+
+footer .d-lg-none i {
+    font-size: 48px;
+}
