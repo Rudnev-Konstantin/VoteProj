@@ -10,7 +10,29 @@ def home():
 
 @app.route("/login")
 def login():
-    return render_template("login.html", title="Вход", nav={'authorized': True, 'name': "Суанов Давид Мушехович", 'avatar': None, 'is_user': True})
+    return render_template(
+        "login.html",
+        title="Вход",
+        nav={
+            'authorized': True,
+            'name': "Фамилия Имя Отчество",
+            'avatar': None,
+            'is_user': True
+        },
+        main={
+            'section_name': 'Каталог',
+            'buttons': [
+                {
+                    'name': 'Изменить',
+                    'id': 'edit'
+                },
+                {
+                    'name': 'Добавить',
+                    'id': 'add'
+                }
+            ]
+        }
+    )
 
 
 @app.route("/registration")

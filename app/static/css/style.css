@@ -84,3 +84,7 @@ footer i {
 footer .d-lg-none i {
     font-size: 48px;
 }
+
+.buttons-panel {
+    overflow-x: auto;
+}

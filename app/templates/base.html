@@ -131,7 +131,22 @@
     </header>
 
     <main class="flex-grow-1">
-        {% block content %}{% endblock %}
+        <div class="container py-3">
+            <h1 class="text-center">{{ main.section_name }}</h1>
+            {% if main.buttons %}
+                <div class="col d-flex gap-2 buttons-panel">
+                    {% for button in main.buttons %}
+                        <div>
+                            <button type="button" class="btn btn-primary d-none d-md-block" id="{{ button.id }}">{{ button.name }}</button>
+                            <button type="button" class="btn btn-primary btn-sm d-block d-md-none" id="{{ button.id }}">{{ button.name }}</button>
+                        </div> 
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="mt-3">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
     </main>
 
     <footer class="bg-body-tertiary py-4">
