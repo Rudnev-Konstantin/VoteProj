@@ -1,6 +1,3 @@
-{% if nav.authorized %}
-{%set name = nav.name.split() %}
-{% endif %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -18,77 +15,93 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">VoteProj</a>
-                
                 <!-- Desktop Menu -->
-                <div class="d-none d-lg-flex align-items-center">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Отслеживаемое</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Каталог</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                {% if nav.is_user %}Организации{% else %}Вернуться к...{% endif %}
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <div class="dropdown ms-3">
-                        {% if nav.authorized %}
-                            <div class="d-flex align-items-center" id="desktopUserMenu">
-                                {% if nav.avatar %}
-                                    <img src="{{ nav.avatar }}" alt="Аватар" class="rounded-circle me-2 desktop-avatar" id="desktopAvatar">
-                                {% else %}
+                <div class="d-none d-lg-flex row w-100 align-items-center">
+                    <div class="col">
+                        <a class="navbar-brand" href="#">VoteProj</a>
+                    </div>
+                    <div class="col">
+                        <div class="row nav-base gap-3">
+                            <div class="col d-flex justify-content-end">
+                                <a class="nav-link" href="#">Отслеживаемое</a>
+                            </div>
+                            <div class="col d-flex justify-content-start">
+                                <a class="nav-link" href="#">Каталог</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-end pe-3">
+                        <a class="nav-link" href="#">
+                            {% if nav.is_user %}Организации{% else %}Вернуться к...{% endif %}
+                        </a>
+                    </div>
+                    <div class="col">
+                        <div class="dropdown ms-3">
+                            {% if nav.authorized %}
+                                <div class="d-flex align-items-center" id="desktopUserMenu">
+                                    {% if nav.avatar %}
+                                        <img src="{{ nav.avatar }}" alt="Аватар" class="rounded-circle me-2 desktop-avatar" id="desktopAvatar">
+                                    {% else %}
+                                        <div class="avatar-placeholder desktop-avatar me-2" id="desktopAvatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    {% endif %}
+                                    <span>
+                                        {% if nav.authorized and nav.is_user %}
+                                            {%set name = nav.name.split() %}
+                                            {{ name[0] }} {{ name[1][0] }}. {{ name[2][0] }}.
+                                        {% else %}
+                                            {{ nav.name }}
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="dropdown-menu dropdown-menu-end mt-1" id="desktopDropdown">
+                                    <a class="dropdown-item text-center" href="#">Моя страница</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Мои конкурсы</a>
+                                    <a class="dropdown-item" href="#">Мои проекты</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Выход<i class="fa-solid fa-arrow-right-from-bracket ms-2"></i></a>
+                                </div>
+                            {% else %}
+                                <div class="d-flex gap-2 align-items-center">
                                     <div class="avatar-placeholder desktop-avatar me-2" id="desktopAvatar">
                                         <i class="fas fa-user"></i>
                                     </div>
-                                {% endif %}
-                                <span>{{ name[0] }} {{ name[1][0] }}. {{ name[2][0] }}.</span>
-                            </div>
-                            <div class="dropdown-menu dropdown-menu-end" id="desktopDropdown">
-                                <a class="dropdown-item text-center" href="#">Моя страница</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Мои конкурсы</a>
-                                <a class="dropdown-item" href="#">Мои проекты</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Выход<i class="fa-solid fa-arrow-right-from-bracket ms-2"></i></a>
-                            </div>
-                        {% else %}
-                            <div class="d-flex gap-2 align-items-center">
-                                <div class="avatar-placeholder desktop-avatar me-2" id="desktopAvatar">
+                                    <a href="#" class="d-block btn btn-outline-dark">
+                                        <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Войти
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div> 
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="row w-100 d-flex d-lg-none">
+                    <div class="col d-flex align-items-center">
+                        <a class="navbar-brand" href="#">VoteProj</a>
+                    </div>
+                    <div class="col d-flex justify-content-end align-items-center">
+                        {% if nav.authorized %}
+                            {% if nav.avatar %}
+                                <img src="{{ nav.avatar }}" alt="Аватар" class="rounded-circle mobile-avatar" id="mobileAvatar">
+                            {% else %}
+                                <div class="avatar-placeholder mobile-avatar" id="mobileAvatar">
                                     <i class="fas fa-user"></i>
                                 </div>
-                                <a href="#" class="d-block btn btn-outline-dark">
+                            {% endif %}
+                        {% else %}
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="avatar-placeholder mobile-avatar" id="mobileAvatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <a href="#" class="d-block btn btn-outline-dark btn-sm">
                                     <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Войти
                                 </a>
                             </div>
                         {% endif %}
                     </div>
-                </div>
-                
-                <!-- Mobile Menu Toggle -->
-                <div class="d-flex d-lg-none align-items-center">
-                    {% if nav.authorized %}
-                        {% if nav.avatar %}
-                            <img src="{{ nav.avatar }}" alt="Аватар" class="rounded-circle mobile-avatar" id="mobileAvatar">
-                        {% else %}
-                            <div class="avatar-placeholder mobile-avatar" id="mobileAvatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                        {% endif %}
-                    {% else %}
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="avatar-placeholder mobile-avatar" id="mobileAvatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <a href="#" class="d-block btn btn-outline-dark btn-sm">
-                                <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Войти
-                            </a>
-                        </div>
-                    {% endif %}
                 </div>
             </div>
 

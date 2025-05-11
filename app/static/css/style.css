@@ -57,11 +57,13 @@ footer a:hover {
 
 .desktop-avatar {
     width: 64px;
+    min-width: 64px;
     height: 64px;
 }
 
 .mobile-avatar {
     width: 48px;
+    min-width: 48px;
     height: 48px;
 }
 
@@ -105,4 +107,20 @@ footer .d-lg-none i {
 
 .col:has(>.img-thumbnail) {
     max-width: 256px;
+}
+
+.col:has(#desktopUserMenu) {
+    max-width: 350px;
+    width: fit-content;
+    flex: 0 0 auto;
+}
+
+.col:has(#desktopUserMenu) span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-base {
+    min-width: 256px;
 }
