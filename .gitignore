@@ -197,5 +197,3 @@ cython_debug/
 # My additions:
 
 .DS_Store
-UX
-handle_run.sh
