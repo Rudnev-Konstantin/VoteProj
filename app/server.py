@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -10,8 +11,18 @@ def home():
 
 @app.route("/login")
 def login():
+    return "<h1>Страница входа</h1><p>В разработке</p>"
+
+
+@app.route("/registration")
+def registration():
+    return "<h1>Страница регистрации</h1><p>В разработке</p>"
+
+
+@app.route("/catalog")
+def catalog():
     return render_template(
-        "login.html",
+        "catalog.html",
         title="Вход",
         nav={
             'authorized': True,
@@ -30,14 +41,19 @@ def login():
                     'name': 'Добавить',
                     'id': 'add'
                 }
+            ],
+            'contests': [
+                {
+                    'picture': None,
+                    'name': 'Название',
+                    'status': 0,
+                    'location': 'г. Владикавказ, ул. Владикавказская 69Г',
+                    'datetime': datetime.now().strftime('%Y-%m-%d %H:%M'),
+                    'description': 'Описание'
+                }
             ]
         }
     )
-
-
-@app.route("/registration")
-def registration():
-    return render_template("registration.html", title="Регистрация", nav={'authorized': False})
 
 
 def main():

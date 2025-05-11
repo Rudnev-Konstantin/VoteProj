@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="mb-3">
+        <div class="fa-input">
+            <i class="fa fa-search"></i>
+            <input type="text" class="form-control" placeholder="Поиск">
+        </div>
+    </div>
+    {% for contest in contests %}
+        <!-- Desktop -->
+        <div class="d-none d-lg-flex">
+
+        </div>
+    {% endfor %}
+{% endblock %}
