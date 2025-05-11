@@ -102,3 +102,7 @@ footer .d-lg-none i {
 .fa-input input {
     padding-left: 2em;
 }
+
+.col:has(>.img-thumbnail) {
+    max-width: 256px;
+}

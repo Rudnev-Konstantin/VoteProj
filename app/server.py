@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return redirect("/login")
+    return redirect("/catalog")
 
 
 @app.route("/login")
@@ -47,7 +47,7 @@ def catalog():
                     'picture': None,
                     'name': 'Название',
                     'status': 0,
-                    'location': 'г. Владикавказ, ул. Владикавказская 69Г',
+                    'address': 'г. Владикавказ, ул. Владикавказская 69Г',
                     'datetime': datetime.now().strftime('%Y-%m-%d %H:%M'),
                     'description': 'Описание'
                 }
