@@ -28,7 +28,7 @@ class DataBaseConnect:
         Declarative_Base.metadata.create_all(self.engine)
     
     def fill_default_data(self):
-        from default_data import fill_all_default_data
+        from .default_data import fill_all_default_data
         fill_all_default_data(self.get_session())
     
     def get_session(self):

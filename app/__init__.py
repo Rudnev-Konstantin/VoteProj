@@ -19,7 +19,7 @@ def create_app(mode="default", db_cone_url="sqlite:///:memory:"):
             user = session.get(User, user_id)
         return user
     
-    from .main.routes import bp
+    from .main import bp
     app.register_blueprint(bp)
     
     return app

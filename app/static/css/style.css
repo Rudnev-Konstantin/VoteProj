@@ -1,0 +1,126 @@
+/* Avatar styles */
+.avatar-placeholder {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Dropdown animations */
+.dropdown-menu {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px);
+}
+
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile dropdown styles */
+#mobileUserDropdown {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, height 0.3s ease;
+    overflow: hidden;
+}
+
+#mobileUserDropdown.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Mobile menu item styles */
+#mobileUserDropdown a {
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+}
+
+/* Footer adjustments */
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.desktop-avatar {
+    width: 64px;
+    min-width: 64px;
+    height: 64px;
+}
+
+.mobile-avatar {
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+}
+
+.avatar-placeholder.desktop-avatar i {
+    font-size: 24px;
+}
+
+.avatar-placeholder.mobile-avatar i {
+    font-size: 20px;
+}
+
+.navbar{
+    min-height: 100px;
+}
+
+footer i {
+    font-size: 64px;
+}
+
+footer .d-lg-none i {
+    font-size: 48px;
+}
+
+.buttons-panel {
+    overflow-x: auto;
+}
+
+/* Для отображения иконки fontawesome в placeholder-е */
+.fa-input {
+    position: relative;
+}
+.fa-input .fa {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.fa-input input {
+    padding-left: 2em;
+}
+
+.col:has(>.img-thumbnail) {
+    max-width: 256px;
+}
+
+.col:has(#desktopUserMenu) {
+    max-width: 350px;
+    width: fit-content;
+    flex: 0 0 auto;
+}
+
+.col:has(#desktopUserMenu) span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-base {
+    min-width: 256px;
+}

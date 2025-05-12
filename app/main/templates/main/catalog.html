@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="mb-3">
+        <div class="fa-input">
+            <i class="fa fa-search"></i>
+            <input type="text" class="form-control" placeholder="Поиск">
+        </div>
+    </div>
+    {% for contest in main.contests %}
+        <div class="flex-column border border-secondary-subtle rounded-4 p-3">
+            <div class="col">
+                <div class="row gap-3">
+                    <div class="col">
+                        <img src="{{ contest.picture }}" class="img-thumbnail" width="256" height="256">
+                    </div>
+                    <div class="col d-flex flex-column justify-content-between">
+                        <div>
+                            <h3>{{ contest.name }}</h3>
+                        </div>
+                        <div>
+                            {% if contest.status == 0 %}
+                                <span class="badge text-bg-primary">Набор кандидатов</span>
+                            {% elif contest.status == 1 %}
+                                <span class="badge text-bg-success">Проходит...</span>
+                            {% else %}
+                                <span class="badge text-bg-secondary">Завершено</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col d-flex flex-column justify-content-end align-items-end gap-2">
+                        <div>{{ contest.address }}</div>
+                        <div>{{ contest.datetime }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col p-2 mt-2">
+                <p>{{ contest.description }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
